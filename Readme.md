@@ -44,4 +44,4 @@ python3 src/topologies/basic_topology.py
 - `docker/` - файли для Docker
 
 ## Ліцензія
-MIT
+MIT 
