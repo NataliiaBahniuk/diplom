@@ -1,0 +1,57 @@
+{
+    "default_policy": {
+        "INPUT": "DROP",
+        "FORWARD": "DROP",
+        "OUTPUT": "ACCEPT"
+    },
+    "rules": [
+        {
+            "chain": "INPUT",
+            "protocol": "tcp",
+            "port": 22,
+            "action": "ACCEPT",
+            "comment": "Allow SSH"
+        },
+        {
+            "chain": "INPUT",
+            "protocol": "tcp",
+            "port": 80,
+            "action": "ACCEPT",
+            "comment": "Allow HTTP"
+        },
+        {
+            "chain": "INPUT",
+            "protocol": "tcp",
+            "port": 443,
+            "action": "ACCEPT",
+            "comment": "Allow HTTPS"
+        },
+        {
+            "chain": "INPUT",
+            "protocol": "udp",
+            "port": 1194,
+            "action": "ACCEPT",
+            "comment": "Allow OpenVPN"
+        },
+        {
+            "chain": "FORWARD",
+            "protocol": "all",
+            "source": "10.0.0.0/24",
+            "destination": "10.0.1.0/24",
+            "action": "ACCEPT",
+            "comment": "Allow internal network communication"
+        },
+        {
+            "chain": "INPUT",
+            "protocol": "icmp",
+            "action": "ACCEPT",
+            "comment": "Allow ICMP (ping)"
+        },
+        {
+            "chain": "INPUT",
+            "state": "ESTABLISHED,RELATED",
+            "action": "ACCEPT",
+            "comment": "Allow established connections"
+        }
+    ]
+}
