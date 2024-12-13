@@ -79,5 +79,6 @@ RUN pip3 install -r /app/requirements.txt
 # Встановлюємо робочу директорію
 WORKDIR /app
 
+
 # Команда для запуску
 CMD ["python3", "src/lab_runner.py"]
