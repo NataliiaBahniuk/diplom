@@ -24,6 +24,23 @@ RUN apt-get update && apt-get install -y \
     curl \
     wget \
     git \
+    sudo \
+    lsb-release \
+    socat \
+    openssh-client \
+    psmisc \
+    python3-tk \
+    xterm \
+    iperf \
+    telnet \
+    ethtool \
+    help2man \
+    pyflakes3 \
+    pylint \
+    pep8 \
+    python3-pexpect \
+    openssh-server \
+    cgroup-tools \
     && rm -rf /var/lib/apt/lists/*
 
 # Налаштовуємо дозволи для захоплення пакетів
@@ -41,17 +58,19 @@ RUN git clone https://github.com/mininet/mininet.git && \
 RUN mkdir -p /app/configs/firewall \
     /app/configs/ids \
     /app/configs/vpn \
+    /app/src \
+    /app/tests \
     /var/log/snort \
     /var/log/openvpn
 
 # Копіюємо конфігураційні файли
-COPY ../configs/firewall/rules.json /app/configs/firewall/
-COPY ../configs/ids/snort.conf /app/configs/ids/
-COPY ../configs/vpn/openvpn.conf /app/configs/vpn/
+COPY ../configs/firewall/* /app/configs/firewall/
+COPY ../configs/ids/* /app/configs/ids/
+COPY ../configs/vpn/* /app/configs/vpn/
 
 # Копіюємо код проекту
-COPY ../src/ /app/src/
-COPY ../tests/ /app/tests/
+COPY ../src/* /app/src/
+COPY ../tests/* /app/tests/
 COPY requirements.txt /app/
 
 # Встановлюємо Python залежності
